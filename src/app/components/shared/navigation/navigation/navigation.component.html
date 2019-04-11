@@ -1,0 +1,50 @@
+<header>
+  <ul>
+    <li>
+      <a routerLink="/home">
+        Simply Food
+      </a>
+    </li>
+  <div *ngIf="!authService.isAuth()">
+    <li>
+      <a routerLink="/register">
+        Register
+      </a>
+    </li>
+    <li>
+      <a routerLink="/login">
+        Login
+      </a>
+    </li>
+  </div>
+  <div *ngIf="authService.isAuth() && authService.isAdmin()">
+    <ul>
+      <li>
+        <a routerLink="/createCategory">Create Category</a>
+      </li>
+      <li>
+        <a routerLink="/addProduct">Add Product</a>
+      </li>
+      <li>
+        <a href="#" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="authService.isAuth() && !authService.isAdmin()">
+    <ul>
+      <li>
+        <a routerLink="/createRecipe">Create Recipe</a>
+      </li>
+      <li>
+        <a routerLink="/myRecipes">My Recipes</a>
+      </li>
+      <li>
+        <a routerLink="/favouriteRecipes">Favourite Recipes</a>
+      </li>
+      <li>
+        <a href="#" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+  </ul>
+  </header>

@@ -1,0 +1,10 @@
+<div>
+  <h1>All {{categoryName}} Recipes</h1> <br /> <hr />
+       <div *ngFor="let recipe of recipes">
+          <h1>{{recipe.name}}</h1>
+          <img src={{recipe.photo}}> <br />
+          <a routerLink="/details/{{recipe._id}}" class="specialBtn" name={{recipe._id}}>Details</a>
+          <br /> <br /> 
+          <hr />
+      </div>
+</div>

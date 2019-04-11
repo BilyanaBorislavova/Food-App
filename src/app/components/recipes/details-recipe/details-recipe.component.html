@@ -1,0 +1,19 @@
+<div>
+  <h1></h1> <br /> <hr />
+          <h1>{{recipe.name}}</h1>
+          <img src={{recipe.photo}}> <br />
+          <h2>Necessary Products:</h2>
+          <div *ngFor="let product of recipe.products">
+            <p>{{product}}</p>
+          </div>
+          <h2>Recipe:</h2>
+          <p>{{recipe.description}}</p>
+          <a routerLink="add/{{recipe._id}}" class="specialBtn">Add To My Recipes</a>
+          <br/> <br/>
+          <p *ngIf="recipe.creator == currentUser">
+              <a routerLink="edit/{{recipe._id}}" class="specialBtn">Edit</a> <br/>
+              <a routerLink="delete/{{recipe._id}}" class="specialBtn">Delete</a>
+          </p>
+          <br /> <br /> 
+          <hr />
+</div>

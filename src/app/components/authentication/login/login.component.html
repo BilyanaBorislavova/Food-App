@@ -1,0 +1,33 @@
+<form [formGroup]="form" class="login-form" (submit)="login()">
+  <div class="container">
+    <h1>Login</h1>
+    <p>Fill in this form to login.</p>
+    <hr />
+    <label html="username">Username</label> <br />
+    <input
+      type="text"
+      name="username"
+      formControlName="username"
+      placeholder="Enter your username"
+      required
+    />
+    <br />
+    <label html="password">Password</label> <br />
+    <input
+      type="password"
+      name="password"
+      formControlName="password"
+      placeholder="Enter your password"
+      required
+    />
+    <br />
+    <button type="submit" class="loginbtn">
+      Login
+    </button>
+    <div class="container signin">
+      <p>
+        Don't have an account? <a routerLink="/register">Register</a>
+      </p>
+    </div>
+  </div>
+</form>

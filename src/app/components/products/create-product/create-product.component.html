@@ -1,0 +1,15 @@
+<form [formGroup]="form" class="create-form" (submit)="createProduct()">
+  <div class="container">
+      <h1>Add Product</h1> <br/> 
+      <p>Fill in this form to create a product.</p> <hr/>
+      <label html="name">Name</label> <br />
+      <input type="text" name="name" placeholder="Category name" formControlName="name" required/> <br />
+      <div class="alert alert-danger" *ngIf="form.controls.name.touched && form.controls.name.errors?.minlength">
+        Length must be at least {{form.controls.name.errors.minlength.requiredLength}} characters!
+      </div>
+      <div class="alert alert-danger" *ngIf="form.controls.name.touched && form.controls.name.errors?.maxlength">
+        Length must be at least {{form.controls.name.errors.maxlength.requiredLength}} characters!
+      </div>
+      <button type="submit" class="btn">Add Product</button>
+  </div>
+</form>

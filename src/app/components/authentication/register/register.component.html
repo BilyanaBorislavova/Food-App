@@ -1,0 +1,45 @@
+<form [formGroup]="form" class="register-form" (submit)="register()">
+  <div class="container">
+      <h1>Register</h1>
+      <p>Fill in this form to create an account.</p>
+      <hr />
+      <label htmlFor="username">Username</label> <br />
+      <input type="text" name="username" placeholder="Enter your username" formControlName="username" required/> <br />
+      <div class="alert alert-danger" *ngIf="f.username.touched && f.username.errors?.minlength">
+        Length must be at least {{f.username.errors.minlength.requiredLength}} characters!
+      </div>
+      <div class="alert alert-danger" *ngIf="f.username.touched && f.username.errors?.maxlength">
+        Length must not be more than {{f.username.errors.maxlength.requiredLength}} characters!
+      </div>
+
+
+      <label htmlFor="password">Password</label> <br />
+      <input type="password" name="password" placeholder="Enter your password" formControlName="password" required/> <br />
+      <div class="alert alert-danger" *ngIf="f.password.touched && f.password.errors?.minlength">
+        Length must be at least {{f.password.errors.minlength.requiredLength}} characters!
+      </div>
+      <div class="alert alert-danger" *ngIf="f.password.touched && f.password.errors?.maxlength">
+        Length must not be more than {{f.password.errors.maxlength.requiredLength}} characters!
+      </div>
+
+
+      <label htmlFor="email">Email</label> <br />
+      <input type="email" name="email" placeholder="Enter your email" formControlName="email" required/> <br />
+      <div class="alert alert-danger" *ngIf="f.email.touched && f.email.errors">
+         Please, provide a valid email!
+      </div>
+      <label htmlFor="fullName">Full name</label> <br />
+      <input type="text" name="fullName" placeholder="Enter your full name" formControlName="fullName" required/> <br />
+      <div class="alert alert-danger" *ngIf="f.fullName.touched && f.fullName.errors">
+        Please, write your full name! 
+     </div>
+      <label htmlFor="profilePicture">Avatar</label> <br />
+      <input type="text" name="profilePicture" placeholder="Choose a profile picture" formControlName="profilePicture" required/> <br />
+      <p>By creating an account you agree to our <a href="https://i.imgur.com/Q8ifRGK.jpg">Terms & Privacy</a>.</p>
+      <button type="submit" class="registerbtn">Register</button>
+  </div>
+  <div class="container signin">
+      <p>Already have an account? <a routerLink="/login">Login</a>.</p>
+  </div>
+  <br />
+</form>
