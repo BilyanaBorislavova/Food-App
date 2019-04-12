@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.service.register(this.form.value).subscribe((data) => {
-      this.router.navigate(['/home'])
+      this.router.navigate(['/login'])
     })
   }
 

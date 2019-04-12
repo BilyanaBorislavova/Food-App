@@ -7,7 +7,8 @@ import { HttpClient } from '@angular/common/http';
 export class CreateService {
   private readonly createCategoryUrl = 'http://localhost:8000/create/createCategory';
   private readonly createProductUrl = 'http://localhost:8000/create/addProduct';
-  private readonly createRecipeUrl = "http://localhost:8000/create/addRecipe"; 
+  private readonly createRecipeUrl = 'http://localhost:8000/create/addRecipe'; 
+  private readonly deleteRecipeUrl = 'http://localhost:8000/create/deleteRecipe/';
 
   constructor(private http: HttpClient) { }
 
@@ -21,6 +22,10 @@ export class CreateService {
 
   createRecipe(recipe) {
     return this.http.post(this.createRecipeUrl, recipe);
+  }
+
+  deleteRecipe(id) {
+    return this.http.get(this.deleteRecipeUrl + id);
   }
 
 }

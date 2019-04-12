@@ -19,13 +19,14 @@ export class AuthenticationService {
   }
 
   isAdmin() {
-    if(localStorage.getItem('isAdmin') == 'false') {
+    let isAdmin = localStorage.getItem('isAdmin');
+    if(isAdmin == 'false' || isAdmin == null) {
       return false;
     }
     return true;
   }
 
   isAuth() {
-    return localStorage.getItem('token');
+    return localStorage.getItem('userId');
   }
 }

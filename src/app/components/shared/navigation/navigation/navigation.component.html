@@ -36,7 +36,7 @@
         <a routerLink="/createRecipe">Create Recipe</a>
       </li>
       <li>
-        <a routerLink="/myRecipes">My Recipes</a>
+        <a routerLink="/myRecipes/{{authService.isAuth()}}">My Recipes</a>
       </li>
       <li>
         <a routerLink="/favouriteRecipes">Favourite Recipes</a>
