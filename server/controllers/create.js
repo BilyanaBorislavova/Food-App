@@ -1,6 +1,7 @@
 const Product = require('../models/Product');
 const Category = require('../models/Category');
 const Recipe = require('../models/Recipe');
+const User = require('../models/User');
 
 module.exports = {
     createCategory: (req, res, next) => {
@@ -47,11 +48,15 @@ module.exports = {
         console.log(recipe)
         let category =  await Category.findOne({"name":recipe.category})
         recipe.category = category._id;
-        
+        let creator = await User.findById(recipe.creator);
+
         Recipe.create(recipe)
             .then(async (recipe) => {        
                 await category.recipes.push(recipe);
                 category.save();
+
+                await creator.createdRecipes.push(recipe._id);
+                creator.save();
 
                 res.status(200)
                     .json({
@@ -68,5 +73,18 @@ module.exports = {
             })
     },
 
-
+    deleteRecipe: (req, res, next) => {
+        const { id } = req.params;
+console.log(id)
+        Recipe.findByIdAndRemove(id)
+                .then((recipe) => {
+                    res.status(200).json({message: 'Recipe deleted successfully!'})
+                }).catch((err) => {
+                    if (!err.statusCode) {
+                        err.statusCode = 500
+                    }
+    
+                    next(err);
+                })
+    }
 }

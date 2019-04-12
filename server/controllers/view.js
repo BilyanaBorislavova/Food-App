@@ -51,20 +51,7 @@ module.exports = {
   } catch(err) {
     console.log(err);
     next(err);
-  }
-    
-   //Recipe.find({})
-   //    .then((recipes) => {
-   //      res.status(200)
-   //          .json({message: 'Loaded all recipes', recipes})
-   //    })
-   //    .catch((error) => {
-   //      if(!error.statusCode) {
-   //        error.statusCode = 500;
-   //      }
-   //      next(error);
-   //    })
-  },
+  } },
 
   viewDetails: async (req, res, next) => {
     const { id } = req.params;
@@ -76,7 +63,7 @@ module.exports = {
       console.log(err);
       next(err);
     }
-  }
+  },
 
 //  viewArtist: async (req, res, next) => {
 //    const { name } = req.params;
@@ -102,35 +89,34 @@ module.exports = {
 //    }
 //  },
 //
-//  addSongToPlaylist: async (req, res, next) => {
-//    const { song, userId } = req.params;
-//    let user = await User.findById(userId);
-//    if (user.myPlaylist.indexOf(song) <= -1) {
-//      user.myPlaylist.push(song);
-//      res.status(201).json({message: "Song added to playlist successfully!"})
-//    } else {
-//      res.status(500).json({message: "Song already exists in the playlist!"})
-//    }
-//    user.save();
-//  },
+  addRecipe: async (req, res, next) => {
+    const { song, userId } = req.params;
+    let user = await User.findById(userId);
+    if (user.myPlaylist.indexOf(song) <= -1) {
+      user.myPlaylist.push(song);
+      res.status(201).json({message: "Song added to playlist successfully!"})
+    } else {
+      res.status(500).json({message: "Song already exists in the playlist!"})
+    }
+    user.save();
+  },
 //
-//  viewMyPlaylist: async (req, res, next) => {
-//    const {userId} = req.params;
-//
-//    let user = await User.findById(userId);
-//    let songs = [];
-//
-//    for(let song of user.myPlaylist) {
-//      let currentSong = await Song.findById(song);
-//      songs.push(currentSong);
-//    }
-//
-//    console.log(songs)
-//
-//    res.status(200)
-//      .json({message: "Got playlist songs", songs})
-//  },
-//
+   viewMyRecipes: async (req, res, next) => {
+    const {id} = req.params;
+    console.log(id)
+    let user = await User.findById(id);
+    let recipes = [];
+    console.log(user)
+    for(let recipeId of user.createdRecipes) {
+      console.log(recipeId)
+     let currentRecipe = await Recipe.findById(recipeId);
+     recipes.push(currentRecipe);
+    }
+
+    res.status(200)
+      .json({message: "Loaded all recipes! :) ", recipes})
+  }
+
 //  removeSong: async (req, res, next) => {
 //    const {userId, name} = req.params;
 //
