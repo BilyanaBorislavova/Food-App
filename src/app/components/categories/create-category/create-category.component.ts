@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CreateService } from 'src/app/core/services/create.service';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-category.component.css']
 })
 export class CreateCategoryComponent implements OnInit {
-  form;
+  form: FormGroup;
   constructor(private service: CreateService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {

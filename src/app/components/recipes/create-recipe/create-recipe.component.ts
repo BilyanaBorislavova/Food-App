@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { FormBuilder, Validators, FormArray, FormControl } from "@angular/forms";
+import { FormBuilder, Validators, FormArray, FormControl, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ListService } from "src/app/core/services/list.service";
 import { CreateService } from "src/app/core/services/create.service";
@@ -13,10 +13,10 @@ import { Product } from 'src/app/core/models/product';
   styleUrls: ["./create-recipe.component.css"]
 })
 export class CreateRecipeComponent implements OnInit {
-  @Input() categories: Array<Category>;
-  @Input() allProducts: Array<Product>;
-  form;
-  currentUser;
+  categories$: Observable<Array<Category>>;
+  allProducts: Array<Product>;
+  form
+  currentUser: string;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -67,9 +67,7 @@ export class CreateRecipeComponent implements OnInit {
   }
 
   ngAfterContentInit() {
-    this.listService.getAllCategories().subscribe(data => {
-      this.categories = data["categories"];
-    });
+   this.categories$ = this.listService.getAllCategories();
 
     this.listService.getAllProducts().subscribe(data => {
       this.allProducts = data['products'];

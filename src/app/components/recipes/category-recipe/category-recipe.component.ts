@@ -18,7 +18,6 @@ export class CategoryRecipeComponent implements OnInit {
       this.service.getAllRecipes(id).subscribe((data) => {
         this.recipes = data['recipes'];
         this.categoryName = data['categoryName'];
-        console.log(this.recipes)
       })
     })
    

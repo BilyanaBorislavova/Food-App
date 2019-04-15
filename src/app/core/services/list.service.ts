@@ -14,6 +14,7 @@ export class ListService {
   private readonly allRecipesUrl = 'http://localhost:8000/view/allRecipes/';
   private readonly getRecipeDetailsUrl = 'http://localhost:8000/view/details/';
   private readonly getMyRecipesUrl = 'http://localhost:8000/view/myRecipes/';
+  private readonly getFavouriteRecipesUrl = 'http://localhost:8000/view/favouriteRecipes/' // id; 
 
   constructor(private http: HttpClient) { }
 
@@ -34,6 +35,10 @@ export class ListService {
   }
 
   getMyRecipes(id): Observable<Array<Recipe>> {
-    return this.http.get<Array<any>>(this.getMyRecipesUrl + id);
+    return this.http.get<Array<Recipe>>(this.getMyRecipesUrl + id);
+  }
+
+  getFavouriteRecipes(id) : Observable<Array<Recipe>> {
+    return this.http.get<Array<Recipe>>(this.getFavouriteRecipesUrl + id);
   }
 }

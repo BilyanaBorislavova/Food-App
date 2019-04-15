@@ -29,4 +29,8 @@ export class AuthenticationService {
   isAuth() {
     return localStorage.getItem('userId');
   }
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
 }

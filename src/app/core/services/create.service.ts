@@ -9,6 +9,7 @@ export class CreateService {
   private readonly createProductUrl = 'http://localhost:8000/create/addProduct';
   private readonly createRecipeUrl = 'http://localhost:8000/create/addRecipe'; 
   private readonly deleteRecipeUrl = 'http://localhost:8000/create/deleteRecipe/';
+  private readonly addToFavouritesUrl = 'http://localhost:8000/view/addToFavourites/'; //recipeId userId 
 
   constructor(private http: HttpClient) { }
 
@@ -26,6 +27,10 @@ export class CreateService {
 
   deleteRecipe(id) {
     return this.http.get(this.deleteRecipeUrl + id);
+  }
+
+  addToFavourites(recipeId, userId) {
+    return this.http.get(this.addToFavouritesUrl + recipeId + '/' + userId)
   }
 
 }

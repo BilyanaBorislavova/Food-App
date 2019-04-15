@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
       username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
       password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
       email: ['', [Validators.required, Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
-      fullName: ['', Validators.required, Validators.pattern(/^([A-Z])([a-z]+) ([A-Z])([a-z]+)$/)],
+      fullName: ['', [Validators.required, Validators.pattern(/^([A-Z])([a-z]+) ([A-Z])([a-z]+)$/)]],
       profilePicture: ['', Validators.nullValidator]
     })
     console.log(this.form)
@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.service.register(this.form.value).subscribe((data) => {
+      console.log(data);
       this.router.navigate(['/login'])
     })
   }

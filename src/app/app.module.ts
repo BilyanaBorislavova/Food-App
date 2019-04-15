@@ -5,9 +5,9 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { RegisterComponent } from "./components/authentication/register/register.component";
 import { LoginComponent } from "./components/authentication/login/login.component";
-import { HomeComponent } from "./components/home/home/home.component";
+import { HomeComponent } from "./components/home/home.component";
 import { NavigationComponent } from "./components/shared/navigation/navigation/navigation.component";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { CreateCategoryComponent } from "./components/categories/create-category/create-category.component";
 import { CreateProductComponent } from "./components/products/create-product/create-product.component";
@@ -19,6 +19,9 @@ import { AdminGuard } from "./core/guards/admin.guard";
 import { IsAuthGuard } from "./core/guards/is-auth.guard";
 import { AnonymousGuard } from './core/guards/anonymous.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthInterceptorService } from './core/interceptors/auth-interceptor.service';
+import { RecipeInfoComponent } from './components/recipes/recipe-info/recipe-info.component';
+import { FavouriteRecipesComponent } from './components/recipes/favourite-recipes/favourite-recipes.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CreateRecipeComponent,
     DetailsRecipeComponent,
     CategoryRecipeComponent,
-    MyRecipesComponent
+    MyRecipesComponent,
+    RecipeInfoComponent,
+    FavouriteRecipesComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     BrowserAnimationsModule
   ],
-  providers: [AdminGuard, IsAuthGuard, AnonymousGuard],
+  providers: [AdminGuard, IsAuthGuard, AnonymousGuard, 
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

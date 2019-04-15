@@ -6,7 +6,7 @@
       <input hidden formControlName="creator">
       <label for="contry">Select Category</label>
       <select class="form-control" id="category" formControlName="category">
-        <option *ngFor="let category of categories" [value]="category.name">{{category.name}}</option>
+        <option *ngFor="let category of categories$ | async" [value]="category.name">{{category.name}}</option>
       </select>
     </div>
     <div class="alert alert-danger" *ngIf="form.controls.category.touched && form.controls.category.errors">

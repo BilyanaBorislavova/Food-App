@@ -39,7 +39,7 @@
         <a routerLink="/myRecipes/{{authService.isAuth()}}">My Recipes</a>
       </li>
       <li>
-        <a routerLink="/favouriteRecipes">Favourite Recipes</a>
+        <a routerLink="/favouriteRecipes/{{authService.isAuth()}}">Favourite Recipes</a>
       </li>
       <li>
         <a href="#" (click)="logout()">Logout</a>
