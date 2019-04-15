@@ -9,7 +9,7 @@ module.exports = {
       .then((categories) => {
         res
           .status(200)
-          .json({ message: 'Loaded all categories', categories });
+          .json(categories);
       })
       .catch((error) => {
         if (!error.statusCode) {
@@ -90,13 +90,17 @@ module.exports = {
 //  },
 //
   addRecipe: async (req, res, next) => {
-    const { song, userId } = req.params;
+    const { recipeId, userId } = req.params;
+    console.log(req.params)
+    console.log('here')
     let user = await User.findById(userId);
-    if (user.myPlaylist.indexOf(song) <= -1) {
-      user.myPlaylist.push(song);
-      res.status(201).json({message: "Song added to playlist successfully!"})
+    let recipe = await Recipe.findById(recipeId);
+
+    if (user.myRecipes.indexOf(recipe) <= -1) {
+      user.myRecipes.push(recipe);
+      res.status(201).json({message: "Recipe added to list successfully!"})
     } else {
-      res.status(500).json({message: "Song already exists in the playlist!"})
+      res.status(500).json({message: "Recipe already added to your favourites!"})
     }
     user.save();
   },
@@ -108,6 +112,22 @@ module.exports = {
     let recipes = [];
     console.log(user)
     for(let recipeId of user.createdRecipes) {
+      console.log(recipeId)
+     let currentRecipe = await Recipe.findById(recipeId);
+     recipes.push(currentRecipe);
+    }
+
+    res.status(200)
+      .json({message: "Loaded all recipes! :) ", recipes})
+  }, 
+
+  viewFavouriteRecipes: async (req, res, next) => {
+    const {id} = req.params;
+    console.log(id)
+    let user = await User.findById(id);
+    let recipes = [];
+    console.log(user)
+    for(let recipeId of user.myRecipes) {
       console.log(recipeId)
      let currentRecipe = await Recipe.findById(recipeId);
      recipes.push(currentRecipe);

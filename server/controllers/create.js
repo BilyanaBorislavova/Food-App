@@ -75,7 +75,7 @@ module.exports = {
 
     deleteRecipe: (req, res, next) => {
         const { id } = req.params;
-console.log(id)
+
         Recipe.findByIdAndRemove(id)
                 .then((recipe) => {
                     res.status(200).json({message: 'Recipe deleted successfully!'})
