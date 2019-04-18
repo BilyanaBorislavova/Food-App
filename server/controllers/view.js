@@ -57,7 +57,7 @@ module.exports = {
     const { id } = req.params;
 
     try{
-      let recipe = await Recipe.findById(id);
+      let recipe = await Recipe.findById(id).populate('category');
       res.status(200).json({message: "Loaded successfully", recipe})
     } catch(err) {
       console.log(err);
@@ -65,30 +65,21 @@ module.exports = {
     }
   },
 
-//  viewArtist: async (req, res, next) => {
-//    const { name } = req.params;
-//    let allSongs = [];
-//
-//    try {
-//      let artist = await Artist.findById(name);
-//
-//      for (let songId of artist.songs) {
-//        let song = await Song.findById(songId);
-//        allSongs.push({ name: song.name, lyrics: song.lyrics, id: song._id })
-//      }
-//      console.log(allSongs)
-//      res
-//        .status(200)
-//        .json({
-//          message: 'Loaded successfully!!!',
-//          allSongs
-//        })
-//    } catch (error) {
-//      console.log(error);
-//      next(error);
-//    }
-//  },
-//
+  editRecipe: (req, res, next) => {
+    const {id} = req.params;
+    const editedRecipe = req.body;
+    
+    Recipe.findByIdAndUpdate(id, editedRecipe)
+    .then(() => {
+      return res.status(200).json({
+        success: true,
+        message: 'Recipe edited successfully!'
+      }).catch(err => {
+        next(err);
+      })
+  })
+  },
+
   addRecipe: async (req, res, next) => {
     const { recipeId, userId } = req.params;
     console.log(req.params)
@@ -96,7 +87,7 @@ module.exports = {
     let user = await User.findById(userId);
     let recipe = await Recipe.findById(recipeId);
 
-    if (user.myRecipes.indexOf(recipe) <= -1) {
+    if (user.myRecipes.indexOf(recipe._id) <= -1) {
       user.myRecipes.push(recipe);
       res.status(201).json({message: "Recipe added to list successfully!"})
     } else {
@@ -135,84 +126,19 @@ module.exports = {
 
     res.status(200)
       .json({message: "Loaded all recipes! :) ", recipes})
-  }
+  },
 
-//  removeSong: async (req, res, next) => {
-//    const {userId, name} = req.params;
-//
-//    let user = await User.findById(userId);
-//
-//    user.myPlaylist.pull(name)
-//     await user.save();
-//      console.log('Song removed!!')
-//    
-//
-//    res.status(200)
-//    .json({message: "Song removed successfully!", songs: user.myPlaylist})
-//  },
-//
-//  getUsers: (req, res, next) => {
-//    User.find()
-//        .skip(1)
-//        .then((users) => {
-//          res
-//          .status(200)
-//          .json({ message: 'Loaded all users', users });
-//      })
-//      .catch((error) => {
-//        if (!error.statusCode) {
-//          error.statusCode = 500;
-//        }
-//        next(error);
-//      });
-//        
-//  },
-//
-//  removeUser: (req, res, next) => {
-//    const {userId} = req.params;
-//
-//     User.findByIdAndRemove(userId)
-//     .then(data => {
-//       res.status(201).json({message: `User ${data.email} removed successfully!`})
-//     }).catch(err => { 
-//       console.log(err)
-//       next(error);
-//     })
-//  },
-//
-//   editArtist: async (req, res, next) => {
-//    const {artistId} = req.params;
-//    console.log(req.body)
-//    try{
-//    const artist = await Artist.findById(artistId);
-//    artist.name = req.body.name;
-//    artist.photo = req.body.photo;
-//    artist.save();
-//
-//    res.status(201).json({message: `Artist edited successfully!`, artist})
-//
-//    } catch(err) {
-//      console.log(err)
-//      next(error);
-//    }
-//    //console.log(artist);
-//  },
-//
-//  getCurrentArtist: async (req, res, next) => {
-//    const {artistId} = req.params;
-//
-//    try {
-//      let artist = await Artist.findById(artistId);
-//
-//      res
-//        .status(200)
-//        .json({
-//          message: 'Loaded successfully!!!',
-//          artist
-//        })
-//    } catch (error) {
-//      console.log(error);
-//      next(error);
-//    }
-//  }
+  removeRecipe: async (req, res, next) => {
+    const {recipeId, userId} = req.params;
+
+    let user = await User.findById(userId);
+
+    user.myRecipes.pull(recipeId)
+     await user.save();
+      console.log('Song removed!!')
+    
+
+    res.status(200)
+    .json({message: "Song removed successfully!", songs: user.myPlaylist})
+  }
 }
