@@ -12,6 +12,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class MyRecipesComponent implements OnInit {
   recipes;
   currentUser;
+  show;
+  hide;
+  details;
   constructor(private listService: ListService,
      private authService: AuthenticationService, 
      private crudService: CreateService,
@@ -20,6 +23,9 @@ export class MyRecipesComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = localStorage.getItem('userId');
+    this.show = true;
+    this.hide = false;
+    this.details = false;
     this.listService.getMyRecipes(this.authService.isAuth()).subscribe((data) => {
       this.recipes = data['recipes']
       this.recipes = this.recipes.filter(a => a !== null);

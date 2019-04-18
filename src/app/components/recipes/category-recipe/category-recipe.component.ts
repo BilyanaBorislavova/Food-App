@@ -10,9 +10,12 @@ import { ActivatedRoute } from '@angular/router';
 export class CategoryRecipeComponent implements OnInit {
   recipes;
   categoryName;
+  details;
+
   constructor(private service: ListService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.details = true;
     this.route.params.subscribe((data) => {
       let id = data.id;
       this.service.getAllRecipes(id).subscribe((data) => {

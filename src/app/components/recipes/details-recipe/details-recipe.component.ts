@@ -13,6 +13,10 @@ import { AuthenticationService } from "src/app/core/services/authentication.serv
 export class DetailsRecipeComponent implements OnInit {
   recipes;
   currentUser;
+  show;
+  hide;
+  isAdmin;
+  details;
   constructor(
     private route: ActivatedRoute,
     private service: ListService,
@@ -23,6 +27,10 @@ export class DetailsRecipeComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.authService.isAuth();
+    this.show = true;
+    this.hide = false;
+    this.details = false;
+    this.isAdmin = this.authService.isAdmin();
 
     this.route.params.subscribe(data => {
       this.service.getRecipeDetails(data.id).subscribe(data => {

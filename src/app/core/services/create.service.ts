@@ -10,6 +10,8 @@ export class CreateService {
   private readonly createRecipeUrl = 'http://localhost:8000/create/addRecipe'; 
   private readonly deleteRecipeUrl = 'http://localhost:8000/create/deleteRecipe/';
   private readonly addToFavouritesUrl = 'http://localhost:8000/view/addToFavourites/'; //recipeId userId 
+  private readonly removeFromFavouritesUrl = 'http://localhost:8000/view/removeRecipe/'
+  private readonly editRecipeUrl = 'http://localhost:8000/editRecipe/'; // id 
 
   constructor(private http: HttpClient) { }
 
@@ -30,7 +32,14 @@ export class CreateService {
   }
 
   addToFavourites(recipeId, userId) {
-    return this.http.get(this.addToFavouritesUrl + recipeId + '/' + userId)
+    return this.http.get(this.addToFavouritesUrl + recipeId + '/' + userId); 
   }
 
+  removeFromFavourites(recipeId, userId) {
+    return this.http.get(this.removeFromFavouritesUrl + recipeId + '/' + userId);
+  }
+
+  editRecipe(id, recipe) {
+    return this.http.post(this.editRecipeUrl + id, recipe);
+  }
 }

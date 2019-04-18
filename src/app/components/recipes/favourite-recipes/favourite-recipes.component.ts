@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { ListService } from 'src/app/core/services/list.service';
 
 @Component({
@@ -10,11 +9,17 @@ import { ListService } from 'src/app/core/services/list.service';
 export class FavouriteRecipesComponent implements OnInit {
   recipes;
   currentUser;
+  show;
+  hide;
+  details;
 
-  constructor(private authService: AuthenticationService, private listService: ListService) { }
+  constructor(private listService: ListService) { }
 
   ngOnInit() {
-    this.currentUser = this.authService.isAuth();
+    this.currentUser = localStorage.getItem('userId');
+    this.show = false;
+    this.hide = true;
+    this.details = false;
     this.listService.getFavouriteRecipes(this.currentUser).subscribe((data) => {
       this.recipes = data['recipes'];
     })

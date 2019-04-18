@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthInterceptorService } from './core/interceptors/auth-interceptor.service';
 import { RecipeInfoComponent } from './components/recipes/recipe-info/recipe-info.component';
 import { FavouriteRecipesComponent } from './components/recipes/favourite-recipes/favourite-recipes.component';
+import { EditRecipeComponent } from './components/recipes/edit-recipe/edit-recipe.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FavouriteRecipesComponent } from './components/recipes/favourite-recipe
     CategoryRecipeComponent,
     MyRecipesComponent,
     RecipeInfoComponent,
-    FavouriteRecipesComponent
+    FavouriteRecipesComponent,
+    EditRecipeComponent
   ],
   imports: [
     BrowserModule,

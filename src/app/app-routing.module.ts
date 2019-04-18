@@ -13,6 +13,7 @@ import { AdminGuard } from "./core/guards/admin.guard";
 import { IsAuthGuard } from "./core/guards/is-auth.guard";
 import { AnonymousGuard } from "./core/guards/anonymous.guard";
 import { FavouriteRecipesComponent } from './components/recipes/favourite-recipes/favourite-recipes.component';
+import { EditRecipeComponent } from './components/recipes/edit-recipe/edit-recipe.component';
 
 const routes: Routes = [
   { path: "", pathMatch: "full", component: HomeComponent },
@@ -45,6 +46,7 @@ const routes: Routes = [
     canActivate: [IsAuthGuard]
   },
   { path: "details/:id", component: DetailsRecipeComponent },
+  { path: "edit/:id", component: EditRecipeComponent},
   {
     path: "myRecipes/:id",
     component: MyRecipesComponent,
