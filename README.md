@@ -1,4 +1,28 @@
-# Food-App
+# Food App #
+
+----------
+ A simple application that stores recipes, categories, products and user favourite recipes.
+
+----------
+# Design #
+
+----------
+The application has different user interfaces depending on the status of the current user.
+## Anonymous Users ##
+- Have access to the Home Page
+- Can register/login into the system
+- Can view categories and details recipes
+## Admin ##
+- Can add categories into the database
+- Can add products into the database
+- Can delete user recipes 
+- Can edit user recipes
+## Regular Users ##
+- Can view all categories and recipes
+- Can create their own recipes
+- Can add each of the recipes in their own list
+- Can remove recipes from their list
+- Can edit/ delete their own recipes
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
