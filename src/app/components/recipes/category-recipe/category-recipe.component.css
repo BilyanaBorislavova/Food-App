@@ -41,12 +41,13 @@
       background-color: lightskyblue;
       color: white;
       padding: 16px 20px;
-      margin: 782px;
       border: none;
       cursor: pointer;
-      width: 25%;
+      margin: 0 0 0 917%;
       opacity: 0.9;
-      border-radius: 4px
+      width: 100%;
+      text-align: center;
+      border-radius: 4px;
     }
     
     .btn:hover {

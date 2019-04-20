@@ -2,6 +2,9 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from "./app-routing.module";
+import { ToastrModule } from 'ngx-toastr';
+import {MaterialModule} from './core/modules/material.module';
+import {FoodModule} from './core/modules/food.module';
 import { AppComponent } from "./app.component";
 import { RegisterComponent } from "./components/authentication/register/register.component";
 import { LoginComponent } from "./components/authentication/login/login.component";
@@ -23,6 +26,7 @@ import { AuthInterceptorService } from './core/interceptors/auth-interceptor.ser
 import { RecipeInfoComponent } from './components/recipes/recipe-info/recipe-info.component';
 import { FavouriteRecipesComponent } from './components/recipes/favourite-recipes/favourite-recipes.component';
 import { EditRecipeComponent } from './components/recipes/edit-recipe/edit-recipe.component';
+import { HandlerInterceptorService } from './core/interceptors/handler-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -47,10 +51,13 @@ import { EditRecipeComponent } from './components/recipes/edit-recipe/edit-recip
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule,
+    ToastrModule.forRoot()
   ],
   providers: [AdminGuard, IsAuthGuard, AnonymousGuard, 
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: HandlerInterceptorService, multi: true}
   ],
   bootstrap: [AppComponent]
 })

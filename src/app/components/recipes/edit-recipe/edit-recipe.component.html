@@ -1,4 +1,4 @@
-<form class="create-form">
+<form [formGroup]="form" class="create-form">
   <div class="container">
       <h1>Add Recipe</h1> <br/> 
       <p>Fill in this form to add a recipe.</p> <hr/>
@@ -9,17 +9,17 @@
       </select> 
     </div>
       <label html="name">Name</label> <br />
-      <input type="text" name="name" placeholder="Recipe name" value={{recipe.name}} required/> <br />
+      <input type="text" name="name" placeholder="Recipe name" value={{recipe.name}} formControlName="name" required/> <br />
 
       <label html="photo">Photo</label> <br />
-      <input type="text" name="photo" placeholder="Photo" value={{recipe.photo}}  required/> <br />
+      <input type="text" name="photo" placeholder="Photo" value={{recipe.photo}} formControlName="photo" required/> <br />
 
       <label html="products">Products</label> <br />
       <div *ngFor="let product of recipe.products">
         <input type="checkbox" checked disabled/> {{product}}
        </div> <br/>
        <label html="description">Description</label> <br />
-      <textarea type="text" name="description" placeholder="Write the recipe here ..." value={{recipe.description}}  required></textarea> <br />
+      <textarea type="text" name="description" placeholder="Write the recipe here ..." value={{recipe.description}} formControlName="description" required></textarea> <br />
 
       <button (click)="editRecipe(recipe._id)" type="submit" class="btn">Edit Recipe</button>
   </div>

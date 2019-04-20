@@ -40,15 +40,43 @@ hr {
   
   /* Overwrite default styles of hr */
   
-  /* Set a style for the submit button */
+  /* Set a style for the submit button  0 0 0 737px*/
+  .specialBtn1 {
+    background-color: lightskyblue;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    margin: 0 0 0 915%;
+    opacity: 0.9;
+    width: 100%;
+    text-align: center;
+    border-radius: 4px;
+  }
+
+  .specialBtn2 {
+    background-color: lightskyblue;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    margin: 0 0 0 737px;
+    opacity: 0.9;
+    width: 100%;
+    text-align: center;
+    border-radius: 4px;
+  }
+
   .specialBtn {
     background-color: lightskyblue;
     color: white;
     padding: 16px 20px;
     border: none;
     cursor: pointer;
-    width: 25%;
+    margin: 49pc;
     opacity: 0.9;
+    width: 100%;
+    text-align: center;
     border-radius: 4px;
   }
   

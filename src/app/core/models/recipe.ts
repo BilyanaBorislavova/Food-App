@@ -9,4 +9,4 @@ export interface Recipe {
     products: Array<Product>,
     creator: string,
     description: string;
-}
+} 

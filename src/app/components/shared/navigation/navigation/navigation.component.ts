@@ -16,6 +16,6 @@ export class NavigationComponent implements OnInit {
 
   logout() {
     localStorage.clear();
-    this.router.navigate(['/home']);
+    this.router.navigate(['home']);
   }
 }

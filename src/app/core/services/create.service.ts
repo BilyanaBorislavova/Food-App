@@ -11,7 +11,7 @@ export class CreateService {
   private readonly deleteRecipeUrl = 'http://localhost:8000/create/deleteRecipe/';
   private readonly addToFavouritesUrl = 'http://localhost:8000/view/addToFavourites/'; //recipeId userId 
   private readonly removeFromFavouritesUrl = 'http://localhost:8000/view/removeRecipe/'
-  private readonly editRecipeUrl = 'http://localhost:8000/editRecipe/'; // id 
+  private readonly editRecipeUrl = 'http://localhost:8000/view/editRecipe/'; // id 
 
   constructor(private http: HttpClient) { }
 

@@ -7,29 +7,29 @@
   <h1>{{ recipe.name }}</h1>
   <img src="{{ recipe.photo }}" /> <br />
   <h2>Necessary Products:</h2>
-  <div *ngFor="let product of recipe.products">
-    <p>{{ product }}</p>
-  </div>
+  <mat-chip-list class="d-flex justify-content-center" *ngFor="let product of recipe.products">
+    <mat-chip>{{ product }}</mat-chip>
+  </mat-chip-list>
   <h2>Recipe:</h2>
   <p>{{ recipe.description }}</p>
   <div *ngIf="show">
   <a
     *ngIf="recipe.creator != currentUser && currentUser && !isAdmin"
     (click)="addToFavourites(recipe._id, currentUserId)"
-    class="specialBtn"
+    class="specialBtn2"
     >Add To My Recipes</a
   >
   <br />
   <br />
-  <p *ngIf="recipe.creator == currentUser || isAdmin">
-    <a [routerLink]="['/edit/', recipe._id]" class="specialBtn">Edit</a> <br />
-    <a class="specialBtn" (click)="deleteRecipe(recipe._id)">Delete</a>
-  </p>
+  <div class="btn-group-vertical" *ngIf="recipe.creator == currentUser || isAdmin">
+    <a class="specialBtn1" [routerLink]="['/edit/', recipe._id]" >Edit</a> <br />
+    <a class="specialBtn1" (click)="deleteRecipe(recipe._id)">Delete</a>
+  </div>
 </div>
 <div *ngIf="hide">
   <a
     (click)="removeFromFavourites(recipe._id, currentUserId)"
-    class="specialBtn"
+    class="specialBtn2"
     >Remove From My Recipes</a
   >
 </div>
@@ -38,4 +38,3 @@
   <br />
   <hr />
 </div>
-

@@ -12,14 +12,15 @@
     <div class="alert alert-danger" *ngIf="form.controls.category.touched && form.controls.category.errors">
       Please, select category! 
     </div>
+
       <label html="name">Name</label> <br />
-      <input type="text" name="name" placeholder="Recipe name" formControlName="name" required/> <br />
+      <input type="text" matInput name="name" placeholder="Recipe name" formControlName="name" required/> <br />
       <div class="alert alert-danger" *ngIf="form.controls.name.touched && form.controls.name.errors?.minlength">
         Length must be at least {{form.controls.name.errors.minlength.requiredLength}} characters!
       </div>
       <div class="alert alert-danger" *ngIf="form.controls.name.touched && form.controls.name.errors?.maxlength">
         Length must be at least {{form.controls.name.errors.maxlength.requiredLength}} characters!
-      </div>
+      </div> 
       <label html="photo">Photo</label> <br />
       <input type="text" name="photo" placeholder="Photo" formControlName="photo" required/> <br />
       <div class="alert alert-danger" *ngIf="form.controls.photo.touched &&  form.controls.photo.errors">

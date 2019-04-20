@@ -1,18 +1,28 @@
-import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import {tap} from'rxjs/operators'
+import {
+  HttpInterceptor,
+  HttpHandler,
+  HttpRequest,
+  HttpEvent,
+  HttpResponse,
+  HttpErrorResponse
+} from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable, of } from "rxjs";
+import { tap, catchError } from "rxjs/operators";
+import { ToastrService } from 'ngx-toastr';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class HandlerInterceptorService implements HttpInterceptor {
-
-  constructor() { }
-
-  intercept(request: HttpRequest<any>, next: HttpHandler) : Observable<HttpEvent<any>> {
-    return next.handle(request).pipe(tap((success) => {
-      
-    }))
+  constructor(public toasterService: ToastrService) {}
+  
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+   return next.handle(req).pipe(tap((response) => {
+      if(response instanceof HttpResponse) {
+        const url = response.url;
+        if(url.endsWith('login') || url.endsWith('register') ||  url.endsWith('createRecipe') || url.includes('edit') || url.includes('delete') || url.includes('remove') || url.includes('add') || url.includes('createProduct') || url.includes('createCategory')){
+          this.toasterService.success(response.body.message, 'Success')
+        }
+      }
+   }))
   }
 }
