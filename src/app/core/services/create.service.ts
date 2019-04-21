@@ -40,6 +40,6 @@ export class CreateService {
   }
 
   editRecipe(id, recipe) {
-    return this.http.post(this.editRecipeUrl + id, recipe);
+    return this.http.put(this.editRecipeUrl + id, recipe);
   }
 }

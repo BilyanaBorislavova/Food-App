@@ -14,14 +14,13 @@ import { MyRecipesComponent } from "../../components/recipes/my-recipes/my-recip
 import { RecipeInfoComponent } from "../../components/recipes/recipe-info/recipe-info.component";
 import { FavouriteRecipesComponent } from "../../components/recipes/favourite-recipes/favourite-recipes.component";
 import { EditRecipeComponent } from "../../components/recipes/edit-recipe/edit-recipe.component";
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    RegisterComponent,
-    LoginComponent,
-    HomeComponent,
-    NavigationComponent,
     CreateCategoryComponent,
     CreateProductComponent,
     CreateRecipeComponent,
@@ -32,23 +31,17 @@ import { EditRecipeComponent } from "../../components/recipes/edit-recipe/edit-r
     FavouriteRecipesComponent,
     EditRecipeComponent
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule, MaterialModule, RouterModule, FormsModule],
   exports: [
-    CommonModule
-    //AppComponent,
-    //RegisterComponent,
-    //LoginComponent,
-    //HomeComponent,
-    //NavigationComponent,
-    //CreateCategoryComponent,
-    //CreateProductComponent,
-    //CreateRecipeComponent,
-    //DetailsRecipeComponent,
-    //CategoryRecipeComponent,
-    //MyRecipesComponent,
-    //RecipeInfoComponent,
-    //FavouriteRecipesComponent,
-    //EditRecipeComponent
+    CreateCategoryComponent,
+    CreateProductComponent,
+    CreateRecipeComponent,
+    DetailsRecipeComponent,
+    CategoryRecipeComponent,
+    MyRecipesComponent,
+    RecipeInfoComponent,
+    FavouriteRecipesComponent,
+    EditRecipeComponent
   ]
 })
 export class FoodModule {}

@@ -23,6 +23,9 @@ export class HandlerInterceptorService implements HttpInterceptor {
           this.toasterService.success(response.body.message, 'Success')
         }
       }
+   }), catchError((err) => {
+     this.toasterService.error(err.error.message, 'Error');
+     throw err;
    }))
   }
 }
